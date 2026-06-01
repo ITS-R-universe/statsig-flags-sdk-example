@@ -1,28 +1,23 @@
-import { VercelToolbar } from '@vercel/toolbar/next'
 import type { Metadata } from 'next'
-import { Toaster } from 'sonner'
-
 import './globals.css'
-import { ExamplesBanner } from '@/components/banners/examples-banner'
 
 export const metadata: Metadata = {
-  title: 'Statsig - Flags SDK Example',
-  description: 'A Flags SDK ecommerce example using Statsig',
+  title: 'ITS-R Universe',
+  description: 'ITS-R Universe — In loving memory of Roshan Ali Sahab',
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        <ExamplesBanner />
-        {children}
-        <Toaster />
-        <VercelToolbar />
-      </body>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `
+          (function(){
+            var t=localStorage.getItem('its-r-theme');
+            if(t==='light') document.documentElement.setAttribute('data-theme','light');
+          })();
+        `}} />
+      </head>
+      <body>{children}</body>
     </html>
   )
 }
